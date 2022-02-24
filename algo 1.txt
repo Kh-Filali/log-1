@@ -1,0 +1,56 @@
+ALGORITHM sentence
+VAR
+   c ,tmp  : char
+   sentence : string 
+  nbC , nbV , nbW ,i : integer
+BEGIN
+    // Create sentence 
+  sentence := "" 
+  tmp:=""
+  i := 0 
+
+  nbC :=0 
+  nbV := 0
+  nbW := 0
+
+
+  WHILE (c <> '.') DO
+
+      REPEAT
+         write("Enter a caracter")
+         read(c)
+      UNTIL (tmp <> " " and c <> " ") 
+         
+      tmp := c 
+      sentence := sentence + c  
+ 
+  END_WHILE
+
+      IF(sentence[length(sentence) -2 ] = " ") THEN 
+
+        nbW := 0  
+      ELSE 
+        nbW := 1
+       END IF   
+
+  FOR i FROM 0 TO length(sentence)-1 STEP 1  DO
+   
+   SWITCH (c) DO
+       case c in ["a".."z" , "A".."Z"] : nbC := nbC+1
+       case c in ["a","e","i","u","o","y","A","E","I","U","O","Y"] : nbV := nbV +1
+       case c = " " : nbW = nbW +1
+       default : 
+   END_SWITCH
+
+
+  write(nbC)
+  write(nbV)
+
+  IF(sentence[0] = " ")THEN 
+     write(nbW - 1)
+  ELSE
+  write(nbW)    
+  END IF
+  END_FOR 
+
+END
